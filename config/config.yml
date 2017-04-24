@@ -1,0 +1,9 @@
+default:
+  server:
+    basename: null
+    port: &site_port 3000
+  site_info:
+    app_scheme: 'seed'
+    domain: '127.0.0.1'
+    name: 'React Seed Project'
+    port: *site_port
