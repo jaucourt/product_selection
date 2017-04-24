@@ -3,7 +3,7 @@ default:
     basename: null
     port: &site_port 3000
   site_info:
-    app_scheme: 'seed'
+    app_scheme: 'product-selection'
     domain: '127.0.0.1'
-    name: 'React Seed Project'
+    name: 'Product Selection'
     port: *site_port

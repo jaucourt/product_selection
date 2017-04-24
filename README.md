@@ -1,5 +1,5 @@
-# {App Title}
-Written with node@4.6.0 and npm@2.5.19
+# Product Selection
+Written with node@6.10.1 and npm@3.10.10
 
 ## Setup
 To get coding, follow instructions here:  https://github.com/nodejs/node-gyp
