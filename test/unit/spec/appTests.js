@@ -5,7 +5,7 @@ import { getIntlContext } from "../helpers/intl-enzyme-test-helper.js";
 import { AppComponent as App } from "../../../client/app.js";
 
 describe("App tests", () => {
-	const projectName = "React Seed Project";
+	const projectName = "Product Selection";
 
 	beforeEach(() => {
 		jasmineEnzyme();
