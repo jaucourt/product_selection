@@ -5,6 +5,11 @@ import { observer } from "mobx-react";
 import { withCookies } from "react-cookie";
 import DataFetchActions from "../../actions/DataFetchActions.js";
 
+if (process.env.BROWSER) {
+	// eslint-disable-next-line global-require
+	require("./ProductSelection.less");
+}
+
 @observer
 export class ProductSelection extends React.Component {
 	static propTypes = {

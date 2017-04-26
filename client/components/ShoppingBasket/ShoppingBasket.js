@@ -1,6 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { observer } from "mobx-react";
+import { Link } from "react-router";
+
+if (process.env.BROWSER) {
+	// eslint-disable-next-line global-require
+	require("./ShoppingBasket.less");
+}
 
 @observer
 export default class ShoppingBasket extends React.Component {
@@ -21,6 +27,7 @@ export default class ShoppingBasket extends React.Component {
 				<ul>
 					{this.renderSelectedProducts(this.props.store.selectedProducts)}
 				</ul>
+				<Link className="checkout" to="/confirmation">Checkout</Link>
 			</div>
 		);
 	}

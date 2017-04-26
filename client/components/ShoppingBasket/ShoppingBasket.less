@@ -1,0 +1,14 @@
+@import (less) "../../theme.less";
+
+.shoppingBasket {
+	border: 1px solid @palette_colour_5;
+	padding: 10px;
+	float: left;
+	li {
+		padding-left: 10px;
+		&:before {
+			content: "-";
+			margin-left: -10px;
+		}
+	}
+}

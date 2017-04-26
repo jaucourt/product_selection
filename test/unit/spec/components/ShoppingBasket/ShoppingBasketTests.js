@@ -1,5 +1,6 @@
 import React from "react";
 import jasmineEnzyme from "jasmine-enzyme";
+import { Link } from "react-router";
 import { shallowWithIntl } from "../../../helpers/intl-enzyme-test-helper.js";
 import ShoppingBasket from "../../../../../client/components/ShoppingBasket/ShoppingBasket.js";
 
@@ -50,6 +51,22 @@ describe("Shopping Basket tests", () => {
 
 		expect(component.find("li").at(0)).toHaveText(selectedProducts[0].title);
 		expect(component.find("li").at(1)).toHaveText(selectedProducts[1].title);
+	});
+
+	it("has a link", () => {
+		expect(getComponent().find(Link)).toBePresent();
+	});
+
+	it("Link has a class of checkout", () => {
+		expect(getComponent().find(Link)).toHaveClassName("checkout");
+	});
+
+	it("Link has correct text", () => {
+		expect(getComponent().find(Link).childAt(0)).toHaveText("Checkout");
+	});
+
+	it("Link points to correct route", () => {
+		expect(getComponent().find(Link)).toHaveProp("to", "/confirmation");
 	});
 });
 
