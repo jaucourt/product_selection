@@ -1,16 +1,15 @@
 import React from "react";
-import { intlShape, injectIntl } from "react-intl";
+import ProductSelectionComponent from "../../components/ProductSelection/ProductSelection.js";
+import ShoppingBasket from "../../components/ShoppingBasket/ShoppingBasket.js";
+import ProductStore from "../../data/ProductStore.js";
 
-class Home extends React.Component {
-	static propTypes = {
-		intl: intlShape.isRequired
-	}
-
+export default class Home extends React.Component {
 	render() {
 		return (
-		<div>
-		</div>);
+			<div className="home">
+				<ProductSelectionComponent store={ProductStore} />
+				<ShoppingBasket store={ProductStore} />
+			</div>
+		);
 	}
 }
-
-export default injectIntl(Home);

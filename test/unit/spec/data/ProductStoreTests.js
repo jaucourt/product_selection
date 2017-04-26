@@ -14,23 +14,45 @@ describe("Product Store tests", () => {
 		spyOn(Services, "customerLocation").and.returnValue(1010);
 		spyOn(Services, "catalogue").and.returnValue({
 			products: [
-				{ category: "Cat1", title: "Channel 1" },
-				{ category: "Cat2", title: "Channel 2" },
-				{ category: "Cat1", title: "Channel 3" },
-				{ category: "Cat2", title: "Channel 4" }
+				{ category: "Cat 1", title: "Channel 1" },
+				{ category: "Cat 2", title: "Channel 2" },
+				{ category: "Cat 1", title: "Channel 3" },
+				{ category: "Cat 2", title: "Channel 4" }
 			]
 		});
 		const { store } = getStore();
 
 		store.handleActions({ type: DataFetchActions.FETCH_PRODUCT_CATALOGUE, customerID: "1111" });
 
-		expect(store.data.Cat1.slice()).toEqual(jasmine.arrayContaining([
+		expect(store.data["Cat 1"].slice()).toEqual(jasmine.arrayContaining([
 			jasmine.objectContaining({ title: "Channel 1", selected: false }),
 			jasmine.objectContaining({ title: "Channel 3", selected: false })
 		]));
-		expect(store.data.Cat2.slice()).toEqual(jasmine.arrayContaining([
+		expect(store.data["Cat 2"].slice()).toEqual(jasmine.arrayContaining([
 			jasmine.objectContaining({ title: "Channel 2", selected: false }),
 			jasmine.objectContaining({ title: "Channel 4", selected: false })
+		]));
+	});
+
+	it("provides list of selected products", () => {
+		spyOn(Services, "customerLocation").and.returnValue(1010);
+		spyOn(Services, "catalogue").and.returnValue({
+			products: [
+				{ category: "Cat 1", title: "Channel 1" },
+				{ category: "Cat 2", title: "Channel 2" },
+				{ category: "Cat 1", title: "Channel 3" },
+				{ category: "Cat 2", title: "Channel 4" }
+			]
+		});
+		const { store } = getStore();
+		store.handleActions({ type: DataFetchActions.FETCH_PRODUCT_CATALOGUE, customerID: "1111" });
+
+		store.data["Cat 1"][1].selected = true;
+		store.data["Cat 2"][0].selected = true;
+
+		expect(store.selectedProducts).toEqual(jasmine.arrayContaining([
+			jasmine.objectContaining(store.data["Cat 1"][1]),
+			jasmine.objectContaining(store.data["Cat 2"][0])
 		]));
 	});
 

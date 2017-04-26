@@ -1,6 +1,7 @@
 import React from "react";
 import App from "./app.js";
-import Home from "./views/home/Home.js";
+import HomeView from "./views/home/Home.js";
+import SetCustomerIDView from "./views/SetCustomerIDView/SetCustomerIDView.js";
 
 class NotFound extends React.Component {
 	render() {
@@ -11,8 +12,9 @@ class NotFound extends React.Component {
 const routes = {
 	path: "/",
 	component: App,
-	indexRoute: { component: Home },
+	indexRoute: { component: HomeView },
 	childRoutes: [
+		{ path: "setCustomerID", component: SetCustomerIDView },
 		{ path: "*", component: NotFound }
 	]
 };

@@ -1,10 +1,18 @@
-import { observable } from "mobx";
+import { observable, computed } from "mobx";
 import Services from "../services/Services.js";
 import dispatcher from "../dispatcher.js";
 import DataFetchActions from "../actions/DataFetchActions.js";
 
 export class ProductStoreClass {
 	@observable data: {}
+
+	@computed get selectedProducts() {
+		let selectedProducts = [];
+		Object.keys(this.data).forEach((category) => {
+			selectedProducts = selectedProducts.concat(this.data[category].filter(product => product.selected));
+		});
+		return selectedProducts;
+	}
 
 	constructor() {
 		dispatcher.register(this.handleActions);
