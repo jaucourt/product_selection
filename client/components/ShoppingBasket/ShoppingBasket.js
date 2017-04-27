@@ -15,8 +15,8 @@ export default class ShoppingBasket extends React.Component {
 	}
 
 	renderSelectedProducts(selectedProducts) {
-		return selectedProducts.map(selectedProduct =>
-			(<li>{selectedProduct.title}</li>)
+		return selectedProducts.map((selectedProduct, idx) =>
+			(<li key={`sbItem${idx}`}>{selectedProduct.title}</li>)
 		);
 	}
 

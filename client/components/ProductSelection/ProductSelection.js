@@ -28,7 +28,10 @@ export class ProductSelection extends React.Component {
 	renderProducts(products) {
 		return products.map(product =>
 			(
-				<li><input type="checkbox" name={product.title} onChange={() => { this.onProductChange(product); }} />{ product.title }</li>
+				<li key={product.title}>
+					<input type="checkbox" name={product.title} onChange={() => { this.onProductChange(product); }} />
+					{ product.title }
+				</li>
 			)
 		);
 	}

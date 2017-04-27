@@ -53,6 +53,16 @@ describe("Shopping Basket tests", () => {
 		expect(component.find("li").at(1)).toHaveText(selectedProducts[1].title);
 	});
 
+	it("each li has unique key", () => {
+		const selectedProducts = [
+			{ title: "Product 1", selected: true },
+			{ title: "Product 2", selected: true }
+		];
+		const component = getComponent({ selectedProducts });
+
+		expect(component.find("li").get(0).key).not.toBe(component.find("li").get(1).key);
+	});
+
 	it("has a link", () => {
 		expect(getComponent().find(Link)).toBePresent();
 	});

@@ -70,12 +70,30 @@ describe("Product Selection component tests", () => {
 		}
 	});
 
-	it("each list item has a product label", () => {
+	it("each list item has a product label", (done) => {
 		const store = getMockStore();
 		const component = getShallowComponent(undefined, store);
 
 		store.data.cat1.forEach((product, idx) => {
 			expect(component.find("div.category").at(0).find("li").at(idx)).toHaveText(product.title);
+			if (idx === store.data.cat1.length - 1) done();
+		});
+	});
+
+	fit("each list item has unique key", (done) => {
+		const store = getMockStore();
+		const component = getShallowComponent(undefined, store);
+		const keys = [];
+		const allProducts = store.data.cat1.concat(store.data.cat2);
+
+		allProducts.forEach((product, idx) => {
+			const key = component.find("div.category li").get(idx).key;
+			expect(keys.includes(key)).toBeFalsy();
+			if (idx < allProducts.length - 1) {
+				keys.push(key);
+			} else {
+				done();
+			}
 		});
 	});
 
@@ -119,8 +137,8 @@ function getMockStore() {
 				{ title: "Channel 3", selected: false }
 			],
 			cat2: [
-				{ title: "Channel 3", selected: false },
-				{ title: "Channel 4", selected: false }
+				{ title: "Channel 4", selected: false },
+				{ title: "Channel 5", selected: false }
 			]
 		}
 	};
