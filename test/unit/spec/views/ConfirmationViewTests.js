@@ -18,10 +18,6 @@ describe("Confirmation View", () => {
 		expect(getComponent()).toHaveClassName("confirmationView");
 	});
 
-	it("has explanatory text", () => {
-		expect(getComponent().find("span")).toHaveText("These are the products you're about to purchase");
-	});
-
 	it("contains Confirmation component", () => {
 		expect(getComponent().find(Confirmation)).toBePresent();
 	});

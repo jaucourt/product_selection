@@ -24,6 +24,10 @@ describe("Confirmation tests", () => {
 		expect(getComponent().find("ul.selectedProducts")).toBePresent();
 	});
 
+	it("has explanatory text", () => {
+		expect(getComponent().find("span")).toHaveText("These are the products you're about to purchase:");
+	});
+
 	it("displays list item for each selected product", () => {
 		const selectedProducts = getSampleSelectedProducts();
 		expect(getComponent({ selectedProducts }).find("ul.selectedProducts li").length).toBe(selectedProducts.length);
