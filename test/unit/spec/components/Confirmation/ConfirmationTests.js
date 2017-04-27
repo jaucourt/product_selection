@@ -13,7 +13,7 @@ describe("Confirmation tests", () => {
 	});
 
 	it("has correct action", () => {
-		expect(getComponent()).toHaveProp("action", "http://www.hashemian.com/tools/form-post-tester.php");
+		expect(getComponent()).toHaveProp("action", "http://localhost:3000/");
 	});
 
 	it("has correct method", () => {

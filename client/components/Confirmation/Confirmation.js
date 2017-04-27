@@ -25,7 +25,7 @@ export default class Confirmation extends React.Component {
 
 	render() {
 		return (
-			<form action="http://www.hashemian.com/tools/form-post-tester.php" method="POST">
+			<form action="http://localhost:3000/" method="POST">
 				<span>These are the products you're about to purchase:</span>
 				{ this.renderHiddenInputs(this.props.store.selectedProducts) }
 				<ul className="selectedProducts">
