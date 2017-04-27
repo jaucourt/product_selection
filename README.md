@@ -2,11 +2,10 @@
 Written with node@6.10.1 and npm@3.10.10
 
 ## Setup
-To get coding, follow instructions here:  https://github.com/nodejs/node-gyp
-
-Then just run
+To get running, just run
 ```sh
 $ npm install
+$ npm start
 ```
 after checkout.
 
