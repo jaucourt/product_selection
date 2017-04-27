@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withCookies } from "react-cookie";
 
 if (process.env.BROWSER) {
 	// esline-disable-next-line global-require
 	require("./Confirmation.less");
 }
 
-export default class Confirmation extends React.Component {
+export class Confirmation extends React.Component {
 	static propTypes = {
-		store: PropTypes.object.isRequired
+		store: PropTypes.object.isRequired,
+		cookies: PropTypes.object.isRequired
 	}
 
 	renderSelectedProducts(selectedProducts) {
@@ -17,9 +19,9 @@ export default class Confirmation extends React.Component {
 		));
 	}
 
-	renderHiddenInputs(selectedProducts) {
+	renderProductsInHiddenInputs(selectedProducts) {
 		return selectedProducts.map(product => (
-			<input type="hidden" name="products[]" value={product.title} />
+			<input type="hidden" name="products" value={product.title} />
 		));
 	}
 
@@ -27,7 +29,8 @@ export default class Confirmation extends React.Component {
 		return (
 			<form action="http://localhost:3000/" method="POST">
 				<span>These are the products you're about to purchase:</span>
-				{ this.renderHiddenInputs(this.props.store.selectedProducts) }
+				<input type="hidden" name="customerID" value={this.props.cookies.get("customerID")} />
+				{ this.renderProductsInHiddenInputs(this.props.store.selectedProducts) }
 				<ul className="selectedProducts">
 					{ this.renderSelectedProducts(this.props.store.selectedProducts) }
 				</ul>
@@ -36,3 +39,5 @@ export default class Confirmation extends React.Component {
 		);
 	}
 }
+
+export default withCookies(Confirmation);

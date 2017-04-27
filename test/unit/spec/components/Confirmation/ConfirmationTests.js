@@ -1,7 +1,8 @@
 import React from "react";
 import jasmineEnzyme from "jasmine-enzyme";
 import { shallowWithIntl } from "../../../helpers/intl-enzyme-test-helper.js";
-import Confirmation from "../../../../../client/components/Confirmation/Confirmation.js";
+import { Confirmation } from "../../../../../client/components/Confirmation/Confirmation.js";
+import createMockCookies from "../../../helpers/CreateMockCookies.js";
 
 describe("Confirmation tests", () => {
 	beforeEach(() => {
@@ -44,25 +45,28 @@ describe("Confirmation tests", () => {
 		});
 	});
 
+	it("creates hidden input for customer id", () => {
+		expect(getComponent().find('input[type="hidden"]').filterWhere(input => input.prop("name") === "customerID")).toBePresent();
+	});
+
+	it("gets customerID from cookie and populates hidden input", () => {
+		const customerID = "2020";
+		const customerIDInput = getComponent(undefined, createMockCookies(customerID))
+			.find('input[type="hidden"]')
+			.filterWhere(input => input.prop("name") === "customerID");
+		expect(customerIDInput).toHaveProp("value", customerID);
+	});
+
 	it("creates hidden input for each selected product", () => {
 		const selectedProducts = getSampleSelectedProducts();
 		const component = getComponent({ selectedProducts });
-		expect(component.find('input[type="hidden"]').length).toBe(selectedProducts.length);
-	});
-
-	it("each hidden input has name of products[]", () => {
-		const selectedProducts = getSampleSelectedProducts();
-		const component = getComponent({ selectedProducts });
-		const inputs = component.find('input[type="hidden"]');
-		for (let x = 0; x < selectedProducts.length; x += 1) {
-			expect(inputs.at(x)).toHaveProp("name", "products[]");
-		}
+		expect(component.find('input[type="hidden"]').filterWhere(input => input.prop("name") === "products").length).toBe(selectedProducts.length);
 	});
 
 	it("each hidden input has a value of the product title", () => {
 		const selectedProducts = getSampleSelectedProducts();
 		const component = getComponent({ selectedProducts });
-		const inputs = component.find('input[type="hidden"]');
+		const inputs = component.find('input[type="hidden"]').filterWhere(input => input.prop("name") === "products");
 		for (let x = 0; x < selectedProducts.length; x += 1) {
 			expect(inputs.at(x)).toHaveProp("value", selectedProducts[x].title);
 		}
@@ -87,6 +91,6 @@ function getSampleSelectedProducts() {
 	];
 }
 
-function getComponent(store = { selectedProducts: [] }) {
-	return shallowWithIntl(<Confirmation store={store} />);
+function getComponent(store = { selectedProducts: [] }, cookies = createMockCookies()) {
+	return shallowWithIntl(<Confirmation store={store} cookies={cookies} />);
 }

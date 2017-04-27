@@ -80,7 +80,7 @@ describe("Product Selection component tests", () => {
 		});
 	});
 
-	fit("each list item has unique key", (done) => {
+	it("each list item has unique key", (done) => {
 		const store = getMockStore();
 		const component = getShallowComponent(undefined, store);
 		const keys = [];

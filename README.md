@@ -10,6 +10,10 @@ $ npm install
 ```
 after checkout.
 
+## Usage
+Once up-and-running, you can navigate to http://localhost:8080. However, the app expects to find a cookie 'customerID'. To set this up, go to http://localhost:8080/setCustomerID and select the location you wish to use. Then go back to http://localhost:8080 and you should see the products for the location you selected.
+On clicking 'checkout', you'll be taken to the confimation page. Before submitting from here, a webserver is expected at http://localhost:3000. A very simple one is available from https://github.com/jaucourt/post_print, that will simply log POSTed values to the console.
+
 ## Tests
 ### Running unit tests as a developer
 To run a test watcher, it's recommended that you run

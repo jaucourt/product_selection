@@ -1,8 +1,8 @@
 import React from "react";
 import jasmineEnzyme from "jasmine-enzyme";
-import { shallowWithIntl } from "../../helpers/intl-enzyme-test-helper.js";
+import { shallowWithIntl, mountWithIntl } from "../../helpers/intl-enzyme-test-helper.js";
 import ConfirmationView from "../../../../client/views/confirmation/ConfirmationView.js";
-import Confirmation from "../../../../client/components/Confirmation/Confirmation.js";
+import ConfirmationComponent from "../../../../client/components/Confirmation/Confirmation.js";
 import ProductStore from "../../../../client/data/ProductStore.js";
 
 describe("Confirmation View", () => {
@@ -15,15 +15,15 @@ describe("Confirmation View", () => {
 	});
 
 	it("has classname of confirmationView", () => {
-		expect(getComponent()).toHaveClassName("confirmationView");
+		expect(getComponent()).toHaveProp("className", "confirmationView");
 	});
 
 	it("contains Confirmation component", () => {
-		expect(getComponent().find(Confirmation)).toBePresent();
+		expect(getComponent().find(ConfirmationComponent)).toBePresent();
 	});
 
 	it("provides correct store", () => {
-		expect(getComponent().find(Confirmation)).toHaveProp("store", ProductStore);
+		expect(getComponent().find(ConfirmationComponent)).toHaveProp("store", ProductStore);
 	});
 });
 
