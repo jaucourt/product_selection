@@ -28,13 +28,9 @@ let webpackConfig = {
 				path.resolve(__dirname, 'client'),
 				path.resolve(__dirname, 'test', 'unit', 'helpers'),
 				path.resolve(__dirname, 'test', 'unit', 'spec'),
-				// Use realpath so we can resolve symbolic links if you are
-				// developing sequoia-client-sdk too
-				fs.realpathSync(path.resolve(__dirname, 'node_modules', 'sequoia-client-sdk', 'lib'))
 			],
 			query: {
 				// See http://stackoverflow.com/a/34574630
-				// Needed when `ln -s`ing a node_module (e.g. sequoia-client-sdk)
 				presets: ['babel-preset-es2015', 'babel-preset-react'].map(require.resolve),
 				plugins: ['istanbul', 'transform-decorators-legacy', 'transform-class-properties']
 			}
