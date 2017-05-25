@@ -17,18 +17,18 @@ class Services {
 	catalogue(locationID) {
 		const data = {
 			products: [
-				{ category: "News", title: "Sky News" },
-				{ category: "News", title: "Sky Sports News" }
+				{ category: "Category 1", title: "Product 1" },
+				{ category: "Category 1", title: "Product 2" }
 			]
 		};
 		switch (locationID) {
 			case 1931:
 			case 1955:
-				data.products.push({ category: "Sports", title: "Arsenal TV" });
-				data.products.push({ category: "Sports", title: "Chelsea TV" });
+				data.products.push({ category: "Category 2", title: "Product 3" });
+				data.products.push({ category: "Category 2", title: "Product 4" });
 				break;
 			case 1901:
-				data.products.push({ category: "Sports", title: "Liverpool TV" });
+				data.products.push({ category: "Category 2", title: "Product 5" });
 
 			// no default
 		}

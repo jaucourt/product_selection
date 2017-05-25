@@ -14,9 +14,9 @@ export class SetCustomerID extends React.Component {
 	render() {
 		return (
 			<div className="setCustomerID">
-				<button className="holloway" onClick={() => { this.onButtonClick("2004"); }}>Holloway</button>
-				<button className="chelsea" onClick={() => { this.onButtonClick("2015"); }}>Chelsea</button>
-				<button className="liverpool" onClick={() => { this.onButtonClick("1990"); }}>Liverpool</button>
+				<button className="location1" onClick={() => { this.onButtonClick("2004"); }}>Location 1</button>
+				<button className="location2" onClick={() => { this.onButtonClick("2015"); }}>Location 2</button>
+				<button className="location3" onClick={() => { this.onButtonClick("1990"); }}>Location 3</button>
 			</div>
 		);
 	}
